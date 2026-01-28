@@ -29,7 +29,7 @@ def load_data():
     countries = pd.read_csv(COUNTRIES_URL)
 
     # Keep it simple: only columns we actually use
-    co2 = co2[["country", "year", "co2", "co2_per_capita"]].copy()
+    co2 = co2[["country", "year", "iso_code", "co2", "co2_per_capita"]].copy()
 
     # Countries file has: country (2-letter), latitude, longitude, name
     countries = countries[["name", "latitude", "longitude"]].copy()
