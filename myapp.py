@@ -44,9 +44,7 @@ st.session_state.data = load_data()
 
 st.write("Use the pages on the left to explore the data.")
 
-st.title("Check my awesome map🗺️")
-
-df = st.session_state.data.copy()
+st.title("Map of the Countries in the Dataset🗺️")
 
 # For the map we need lat/long
 df = df.loc[~df["latitude"].isna(), :]
