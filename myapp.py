@@ -44,14 +44,32 @@ st.session_state.data = load_data()
 
 st.write("Use the pages on the left to explore the data.")
 
-st.title("Map of the Countries in the Dataset🗺️")
+st.title("🌍 CO₂ Emissions App")
 
-# For the map we need lat/long
+# make sure data exists
+if "data" not in st.session_state:
+    st.error("Data not loaded. Please reload the app.")
+    st.stop()
+
+
+df = st.session_state.data.copy()
+
+# ---- MAP CODE ----
+
+# remove rows without coordinates
 df = df.loc[~df["latitude"].isna(), :]
 
-# Keep it simple: map points for a single year
-year = st.slider("Year", int(df["year"].min()), int(df["year"].max()), int(df["year"].max()))
-df = df[df["year"] == year]
+year = st.slider(
+    "📅 Year",
+    int(df["year"].min()),
+    int(df["year"].max()),
+    int(df["year"].max())
+)
 
-st.dataframe(df.head(50))
-st.map(data=df, latitude="latitude", longitude="longitude")
+df_year = df[df["year"] == year]
+
+st.map(
+    data=df_year,
+    latitude="latitude",
+    longitude="longitude"
+)
