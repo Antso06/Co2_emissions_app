@@ -44,7 +44,7 @@ st.session_state.data = load_data()
 
 st.write("Use the pages on the left to explore the data.")
 
-st.title("🌍 CO₂ Emissions App")
+
 
 # make sure data exists
 if "data" not in st.session_state:
