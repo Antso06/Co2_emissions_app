@@ -5,6 +5,20 @@ st.set_page_config(page_title="CO2 App", page_icon="🌍")
 
 st.title("CO₂ Emissions App🌍")
 
+st.markdown(
+    """
+### Why CO₂ emissions matter
+
+CO₂ emissions play an important role in current discussions about climate change and sustainability.
+Understanding how emissions develop over time and how they differ between countries helps to better
+assess global responsibilities and trends.
+
+This application visualizes real-world CO₂ emissions data and allows users to explore global patterns,
+country comparisons, and geographic distributions interactively.
+"""
+)
+
+
 # Real datasets (loaded once here)
 CO2_URL = "https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv"
 COUNTRIES_URL = "https://raw.githubusercontent.com/google/dspl/master/samples/google/canonical/countries.csv"
