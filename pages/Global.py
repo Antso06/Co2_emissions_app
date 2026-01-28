@@ -12,16 +12,16 @@ max_year = int(df["year"].max())
 year = st.slider("Year", min_year, max_year, max_year)
 
 
+
+
+
 st.subheader("Top 10 countries (selected year)")
+
 
 year_df = df[df["year"] == year].copy()
 
-# remove common aggregate rows
-aggregates = [
-    "World", "OECD", "European Union (27)", "Europe", "Asia", "Africa",
-    "North America", "South America", "Oceania", "International transport"
-]
-year_df = year_df[~year_df["country"].isin(aggregates)]
+# 🔑 THIS LINE removes World, OECD, regions, income groups, etc.
+year_df = year_df[~year_df["iso_code"].astype(str).str.startswith("OWID_")]
 
 year_df = year_df.dropna(subset=["co2"])
 
@@ -32,6 +32,7 @@ ax.barh(top10["country"], top10["co2"])
 ax.invert_yaxis()
 ax.set_xlabel("CO₂ (total)")
 st.pyplot(fig)
+
 
 
 
