@@ -56,20 +56,16 @@ df = st.session_state.data.copy()
 
 # ---- MAP CODE ----
 
-# remove rows without coordinates
 df = df.loc[~df["latitude"].isna(), :]
 
-year = st.slider(
-    "📅 Year",
-    int(df["year"].min()),
-    int(df["year"].max()),
-    int(df["year"].max())
-)
+latest_year = int(df["year"].max())
+df_year = df[df["year"] == latest_year]
 
-df_year = df[df["year"] == year]
+st.subheader(f"🗺️ CO₂ emissions map ({latest_year})")
 
 st.map(
     data=df_year,
     latitude="latitude",
     longitude="longitude"
 )
+
